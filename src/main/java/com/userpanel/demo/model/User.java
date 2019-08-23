@@ -11,6 +11,11 @@ public class User {
     private String name;
     private String phone;
 
+    public User(String name, String phone) {
+        this.name = name;
+        this.phone = phone;
+    }
+
     public int getId() {
         return id;
     }
@@ -38,8 +43,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 '}';
     }

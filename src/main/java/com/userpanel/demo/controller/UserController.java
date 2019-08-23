@@ -44,14 +44,14 @@ public class UserController {
         logger.debug("Updating user with id = {}", id);
         user.setId(id);
         userService.updateUser(user);
-        return "User with id = " + id + " updated";
+        return "User with id = {} " + id + " updated";
     }
 
     @DeleteMapping(value = "/delete/{user-id}")
     public String delete(@PathVariable(value = "user-id") int id) {
         logger.debug("Deleting user with id = {}", id);
         userService.deleteUserById(id);
-        return "User with id = {}" + id + " deleted";
+        return "User with id = {} " + id + " deleted";
     }
 
 }
