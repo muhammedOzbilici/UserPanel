@@ -1,7 +1,7 @@
 $( document ).ready(function() {
 	
 	// GET REQUEST
-	$("#getAllCustomerId").click(function(event){
+	$("#getAllUserId").click(function(event){
 		event.preventDefault();
 		ajaxGet();
 	});
@@ -10,14 +10,14 @@ $( document ).ready(function() {
 	function ajaxGet(){
 		$.ajax({
 			type : "GET",
-			url : window.location + "api/customer/all",
+			url : window.location + "api/mongo/user/user",
 			success: function(result){
 				if(result.status == "Done"){
 					$('#getResultDiv ul').empty();
-					var custList = "";
-					$.each(result.data, function(i, customer){
-						var customer = "- Customer with Id = " + i + ", firstname = " + customer.firstname + ", lastName = " + customer.lastname + "<br>";
-						$('#getResultDiv .list-group').append(customer)
+					var userList = "";
+					$.each(result.data, function(i, user){
+						var user = "- User with Id = " + i + ", name = " + user.name + ", surname = " + user.surname + "<br>";
+						$('#getResultDiv .list-group').append(user)
 			        });
 					console.log("Success: ", result);
 				}else{

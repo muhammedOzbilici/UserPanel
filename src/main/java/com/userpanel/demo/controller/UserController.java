@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,20 +33,37 @@ public class UserController {
     @GetMapping("/user")
     public ModelAndView getAll() {
         ModelAndView modelAndView = new ModelAndView("index");
-        modelAndView.addObject("users",userService.getAllUser());
+        modelAndView.addObject("users", userService.getAllUser());
         return modelAndView;
     }
 
-//    @GetMapping(value = "/getall")
-//    public Collection<User> getAll() {
-//        logger.debug("Getting all users");
-//        return userService.getAllUser();
+
+//    @GetMapping("/user")
+//    public ModelAndView getAll() {
+//        ModelAndView modelAndView = new ModelAndView("index");
+//        modelAndView.addObject("users",userService.getAllUser());
+//        return modelAndView;
 //    }
+
 
     @GetMapping(value = "/getbyid/{user-id}")
     public Optional<User> getById(@PathVariable(value = "user-id") Integer id) {
         logger.debug("Getting user with id = {} ", id);
         return userService.findUserById(id);
+    }
+
+    @GetMapping(value = "/findOne")
+    @ResponseBody
+    public Optional<User> findOne(Integer id) {
+        return userService.findUserById(id);
+    }
+
+    @PostMapping("/save")
+    public String save(User user) {
+        List<User> userList = new ArrayList<>();
+        userList.add(user);
+        userService.createUser(userList);
+        return "redirect:/";
     }
 
     @PutMapping(value = "/update/{user-id}")
@@ -56,11 +74,18 @@ public class UserController {
         return "User with id = {} " + id + " updated";
     }
 
-    @DeleteMapping(value = "/delete/{user-id}")
-    public String delete(@PathVariable(value = "user-id") Integer id) {
-        logger.debug("Deleting user with id = {}", id);
+    @GetMapping(value = "/delete")
+    public String delete(Integer id) {
         userService.deleteUserById(id);
-        return "User with id = {} " + id + " deleted";
+        return "redirect:/";
     }
+
+
+//    @DeleteMapping(value = "/delete/{user-id}")
+//    public String delete(@PathVariable(value = "user-id") Integer id) {
+//        logger.debug("Deleting user with id = {}", id);
+//        userService.deleteUserById(id);
+//        return "User with id = {} " + id + " deleted";
+//    }
 
 }
