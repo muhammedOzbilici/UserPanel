@@ -1,7 +1,7 @@
 package com.userpanel.demo.service.impl;
 
 import com.userpanel.demo.model.User;
-import com.userpanel.demo.repository.UserDao;
+import com.userpanel.demo.repository.UserRepository;
 import com.userpanel.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,30 +14,30 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    UserDao userDao;
+    UserRepository userRepository;
 
     @Override
     public void createUser(List<User> users) {
-        userDao.saveAll(users);
+        userRepository.saveAll(users);
     }
 
     @Override
     public Collection<User> getAllUser() {
-        return userDao.findAll();
+        return userRepository.findAll();
     }
 
     @Override
     public Optional<User> findUserById(int id) {
-        return userDao.findById(id);
+        return userRepository.findById(id);
     }
 
     @Override
     public void deleteUserById(int id) {
-        userDao.deleteById(id);
+        userRepository.deleteById(id);
     }
 
     @Override
     public void updateUser(User user) {
-        userDao.save(user);
+        userRepository.save(user);
     }
 }

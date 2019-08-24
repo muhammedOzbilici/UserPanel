@@ -1,26 +1,40 @@
 package com.userpanel.demo.model;
 
+import com.mongodb.lang.NonNull;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Objects;
+import javax.persistence.Id;
+import java.io.Serializable;
 
 @Document(collection = "user")
-public class User {
+public class User implements Serializable {
 
-    private int id;
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    private Integer id;
+
+    @NonNull
     private String name;
+
+    @NonNull
+    private String surname;
+
+    @NonNull
     private String phone;
 
-    public User(String name, String phone) {
+    public User(Integer id, String name, String surname, String phone) {
+        this.id = id;
         this.name = name;
+        this.surname = surname;
         this.phone = phone;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -30,6 +44,14 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public String getPhone() {
@@ -44,22 +66,8 @@ public class User {
     public String toString() {
         return "User{" +
                 "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
                 ", phone='" + phone + '\'' +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return id == user.id &&
-                name.equals(user.name) &&
-                phone.equals(user.phone);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, phone);
     }
 }
