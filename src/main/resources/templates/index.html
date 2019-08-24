@@ -11,8 +11,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    <script type="text/javascript" src="/js/getrequest.js"></script>
     <script type="text/javascript" src="/js/main.js"></script>
 
 </head>
@@ -74,7 +72,7 @@
 
                             <div class="form-group">
                                 <label for="id" class="col-form-label">ID:</label>
-                                <input type="text" class="form-control" id="id" name="id" value=""/>
+                                <input type="text" class="form-control" readonly="readonly" id="id" name="id" value=""/>
                             </div>
                             <div class="form-group">
                                 <label for="name" class="col-form-label">Adı:</label>
@@ -104,17 +102,19 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel2">Kullanıcı Silme</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    <p class="alert alert-danger">
+                    Bu kullanıcıyı silmek istediğinize emin misiniz ?
+                    </p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                    <a href="" type="button" class="btn btn-danger" id="delRef">Sil</a>
                 </div>
             </div>
         </div>

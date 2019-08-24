@@ -5,6 +5,7 @@ $(document).ready(function () {
             var text = $(this).text();
             if (text == 'Güncelle') {
                 $.get(href, function (user, status) {
+                    $('.myForm #id').val(user.id);
                     $('.myForm #name').val(user.name);
                     $('.myForm #surname').val(user.surname);
                     $('.myForm #phone').val(user.phone);
@@ -18,6 +19,12 @@ $(document).ready(function () {
                 $('.myForm #exampleModal').modal();
             }
         }
-    )
+    );
+    $('.table .deleteUserBtn').on('click', function (event) {
+        event.preventDefault();
+        var href = $(this).attr('href');
+        $('#myModal #delRef').attr('href', href);
+        $('#myModal').modal();
 
-})
+    });
+});
