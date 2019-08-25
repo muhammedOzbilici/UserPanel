@@ -32,16 +32,17 @@ public class UserServiceImplTest extends BaseMockitoTest {
         entity = new User();
         entity.setId(BigInteger.ONE);
         entity.setName("muhammed");
-        entity.setSurname("kara");
-        entity.setPhone("05557212152");
+        entity.setSurname("özbilici");
+        entity.setPhone("05354443322");
     }
 
     @Test
     public void it_should_return_one_user() {
 
-        //when
+        //given
         when(userRepository.findById(BigInteger.ONE)).thenReturn(java.util.Optional.ofNullable(entity));
 
+        //when
         Optional<User> foundedUser = userService.findUserById(BigInteger.ONE);
 
         //then
@@ -59,13 +60,28 @@ public class UserServiceImplTest extends BaseMockitoTest {
     public void it_should_save_user() {
 
         //given
-        User user = new User(BigInteger.ONE, "mahmut", "beyaz", "05357844848");
+        User user = new User(BigInteger.ONE, "muhammed", "özbilici", "05354443322");
 
         //when
         userService.createUser(user);
 
         //then
         verify(userRepository).save(user);
+
+    }
+
+    @Test
+    public void it_should_delete_user_by_id(){
+
+        //given
+        User user = new User(BigInteger.ONE, "muhammed", "özbilici", "05354443322");
+        userService.createUser(user);
+
+        //when
+        userService.deleteUserById(user.getId());
+
+        //then
+        assertThat(userService.findUserById(user.getId())).isEmpty();
 
     }
 
