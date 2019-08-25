@@ -8,6 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import java.math.BigInteger;
 import java.util.Optional;
@@ -71,7 +73,7 @@ public class UserServiceImplTest extends BaseMockitoTest {
     }
 
     @Test
-    public void it_should_delete_user_by_id(){
+    public void it_should_delete_user_by_id() {
 
         //given
         User user = new User(BigInteger.ONE, "muhammed", "özbilici", "05354443322");

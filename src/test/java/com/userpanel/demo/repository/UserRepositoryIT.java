@@ -60,15 +60,14 @@ public class UserRepositoryIT {
 
         //given
         User savedUser = new User(BigInteger.ONE, "muhammed", "özbilici", "05354443322");
-        User updatedUser = savedUser;
-        updatedUser.setPhone("05051120101");
+        User updatedUser = new User(BigInteger.ONE, "muhammed", "özbilici", "05051120101");
 
         //when
         userRepository.save(savedUser);
         userRepository.save(updatedUser);
 
         //then
-        assertThat(savedUser).isEqualToComparingFieldByField(updatedUser);
+        assertThat(userRepository.findById(savedUser.getId()).get().getPhone()).isEqualTo(updatedUser.getPhone());
 
     }
 

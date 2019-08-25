@@ -8,10 +8,13 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.ResultActions;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -70,22 +73,45 @@ public class UserControllerIT extends BaseIT {
         expectedResult.andExpect(jsonPath("$.phone").value("05354443322"));
     }
 
-//    @Test
-//    public void it_should_delete_user_by_id() throws Exception {
-//
-//        //given
-//        User user = new User(BigInteger.ONE, "muhammed", "özbilici", "05557212152");
-//        given(userService.findUserById(BigInteger.ONE)).willReturn(Optional.of(user));
-//
-//        //when
-//        ResultActions expectedResult = mockMvc.perform(post("/delete?id=1&"+BigInteger.ONE)
-//                .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andDo(print());
-//
-//
-//        //then
-//        verify(userService).deleteUserById(BigInteger.ONE);
-//        expectedResult.andExpect(status().is3xxRedirection());
-//
-//    }
+    @Test
+    public void it_should_delete_user_by_id() throws Exception {
+
+        //given
+        User user = new User(BigInteger.ONE, "muhammed", "özbilici", "05557212152");
+        given(userService.findUserById(BigInteger.ONE)).willReturn(Optional.of(user));
+
+        //when
+        ResultActions expectedResult = mockMvc.perform(get("/delete?id=1&" + BigInteger.ONE)
+                .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andDo(print());
+
+
+        //then
+        verify(userService).deleteUserById(BigInteger.ONE);
+        expectedResult.andExpect(status().is3xxRedirection());
+
+    }
+
+    @Test
+    public void it_should_update_user_by_id() throws Exception {
+
+        //given
+        User savedUser = new User(BigInteger.ONE, "muhammed", "özbilici", "05557212152");
+        userService.createUser(savedUser);
+        given(userService.findUserById(BigInteger.ONE)).willReturn(Optional.of(savedUser));
+
+        //when
+        ResultActions expectedResult = mockMvc.perform(post("/edit?id=1&" +
+                "name=muhammed&surname=özbilici&phone=05051223344")
+                .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andDo(print());
+
+
+        //then
+
+        verify(userService).updateUser(userCaptor.capture());
+        User expectedUser = userCaptor.getValue();
+        assertThat(expectedUser.getPhone()).isEqualTo("05051223344");
+        expectedResult.andExpect(status().is3xxRedirection());
+
+    }
 
 }
