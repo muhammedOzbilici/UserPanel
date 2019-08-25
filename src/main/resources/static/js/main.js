@@ -9,10 +9,11 @@ $(document).ready(function () {
                     $('.myForm #name').val(user.name);
                     $('.myForm #surname').val(user.surname);
                     $('.myForm #phone').val(user.phone);
-
+                    $('.myForm #exampleModal').modal();
                 })
-                $('.myForm #exampleModal').modal();
+
             } else {
+                $('.myForm #id').val(randomNumber(10));
                 $('.myForm #name').val('');
                 $('.myForm #surname').val('');
                 $('.myForm #phone').val('');
@@ -28,3 +29,13 @@ $(document).ready(function () {
 
     });
 });
+function randomNumber(len) {
+    var randomNumber;
+    var n = '';
+
+    for(var count = 0; count < len; count++) {
+        randomNumber = Math.floor(Math.random() * 10);
+        n += randomNumber.toString();
+    }
+    return new Date().valueOf();;
+}

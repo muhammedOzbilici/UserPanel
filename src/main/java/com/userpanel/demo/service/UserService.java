@@ -1,20 +1,23 @@
 package com.userpanel.demo.service;
 
-import com.userpanel.demo.model.User;
+import com.userpanel.demo.entity.User;
 
+import java.math.BigInteger;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
 public interface UserService {
 
-    void createUser(List<User> users);
+    void createUser(User user);
 
-    Collection<User> getAllUser();
+    List<User> getAllUser();
 
-    Optional<User> findUserById(int id);
+    Optional<User> findUserById(BigInteger id);
 
-    void deleteUserById(int id);
+    void deleteUserById(BigInteger id);
 
     void updateUser(User user);
+
+    List<User> findAll();
 }

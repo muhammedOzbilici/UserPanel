@@ -1,12 +1,12 @@
 package com.userpanel.demo.service.impl;
 
-import com.userpanel.demo.model.User;
+import com.userpanel.demo.entity.User;
 import com.userpanel.demo.repository.UserRepository;
 import com.userpanel.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,27 +17,32 @@ public class UserServiceImpl implements UserService {
     UserRepository userRepository;
 
     @Override
-    public void createUser(List<User> users) {
-        userRepository.saveAll(users);
+    public void createUser(User user) {
+        userRepository.save(user);
     }
 
     @Override
-    public Collection<User> getAllUser() {
+    public List<User> getAllUser() {
         return userRepository.findAll();
     }
 
     @Override
-    public Optional<User> findUserById(int id) {
+    public Optional<User> findUserById(BigInteger id) {
         return userRepository.findById(id);
     }
 
     @Override
-    public void deleteUserById(int id) {
+    public void deleteUserById(BigInteger id) {
         userRepository.deleteById(id);
     }
 
     @Override
     public void updateUser(User user) {
         userRepository.save(user);
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 }

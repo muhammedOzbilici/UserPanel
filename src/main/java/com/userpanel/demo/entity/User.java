@@ -1,10 +1,11 @@
-package com.userpanel.demo.model;
+package com.userpanel.demo.entity;
 
 import com.mongodb.lang.NonNull;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.math.BigInteger;
 
 @Document(collection = "user")
 public class User implements Serializable {
@@ -12,7 +13,7 @@ public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    private Integer id;
+    private BigInteger id;
 
     @NonNull
     private String name;
@@ -23,18 +24,21 @@ public class User implements Serializable {
     @NonNull
     private String phone;
 
-    public User(Integer id, String name, String surname, String phone) {
+    public User() {
+    }
+
+    public User(BigInteger id, String name, String surname, String phone) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.phone = phone;
     }
 
-    public Integer getId() {
+    public BigInteger getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(BigInteger id) {
         this.id = id;
     }
 
