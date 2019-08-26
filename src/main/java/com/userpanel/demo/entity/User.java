@@ -15,13 +15,13 @@ public class User implements Serializable {
     @Id
     private BigInteger id;
 
-    @NonNull
+
     private String name;
 
-    @NonNull
+
     private String surname;
 
-    @NonNull
+
     private String phone;
 
     public User() {

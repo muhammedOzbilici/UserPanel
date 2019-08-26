@@ -11,7 +11,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
     <script type="text/javascript" src="/js/main.js"></script>
+    <script type="text/javascript" src="/js/validator.js"></script>
+    <script type="text/javascript" src="/js/contact.js"></script>
 
 </head>
 <body>
@@ -77,23 +80,29 @@
                             </div>
                             <div class="form-group">
                                 <label for="name" class="col-form-label">Adı:</label>
-                                <input type="text" class="form-control" id="name" name="name" value=""/>
+                                <input type="text" class="form-control" id="name" name="name" required
+                                       minlength="3" maxlength="15"
+                                       pattern="^[a-zA-Z0-9ğüşöçıİĞÜŞÖÇ]+$" title="Lütfen en az 3, en çok 15 karakter isim giriniz" value=""/>
                             </div>
                             <div class="form-group">
                                 <label for="surname" class="col-form-label">Soyadı:</label>
-                                <input type="text" class="form-control" id="surname" name="surname" value=""/>
+                                <input type="text" class="form-control" id="surname" name="surname" required
+                                       minlength="3" maxlength="25"
+                                       pattern="^[a-zA-Z0-9ğüşöçıİĞÜŞÖÇ]+$" title="Lütfen en az 3, en çok 15 karakter soyisim giriniz" value=""/>
                             </div>
                             <div class="form-group">
                                 <label for="phone" class="col-form-label">Telefon:</label>
-                                <input type="text" class="form-control" id="phone" name="phone"
-                                       onkeyup="
-                                  var phone = this.value;
-                                  if (phone.match(/^\d{3}$/) !== null) {
-                                     this.value = phone + '-';
-                                  } else if (phone.match(/^\d{4}\-\d{2}$/) !== null) {
-                                     this.value = phone + '-';
-                                  }" maxlength="10"
-                                       value=""/>
+                                <input type="text" class="form-control" id="phone" name="phone" required
+                                       pattern="^0\(5(0[5-7]|[3-5]\d)\)?\d{3}?\d{4}$"
+                                       placeholder="0(___)_______"
+                                       title="Lütfen telefon numarasını, belirtilen formatta giriniz"
+                                       value="" />
+                            </div>
+
+                            <div class="form-group">
+                                <div class="g-recaptcha" data-sitekey="6LcK4rQUAAAAABBThKL9kBfpu7IO0sngP4jL2a9K" data-callback="verifyRecaptchaCallback" data-expired-callback="expiredRecaptchaCallback"></div>
+                                <input class="form-control d-none" data-recaptcha="true" required data-error="Please complete the Captcha">
+                                <div class="help-block with-errors"></div>
                             </div>
 
                         </div>

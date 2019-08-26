@@ -1,13 +1,18 @@
 package com.userpanel.demo.dto;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class UserDto {
 
     @NotNull
+    @Size(max = 15,min = 3,message = "Lütfen en az 3 , en fazla 15 karakter giriniz.")
     private String name;
+
     @NotNull
+    @Size(max = 15,min = 3,message = "Lütfen en az 3 , en fazla 15 karakter giriniz.")
     private String surname;
+
     @NotNull
     private String phone;
 
