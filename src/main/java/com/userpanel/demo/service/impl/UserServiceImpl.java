@@ -37,17 +37,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> findUserById(BigInteger id) throws UserNotFoundException {
+    public Optional<User> findUserById(BigInteger id) {
         return userRepository.findById(id);
     }
 
     @Override
-    public void deleteUserById(BigInteger id) throws UserNotFoundException {
+    public void deleteUserById(BigInteger id) {
         userRepository.deleteById(id);
     }
 
     @Override
-    public void updateUser(User user) throws UserNotFoundException {
+    public void updateUser(User user) {
         userRepository.save(user);
     }
 

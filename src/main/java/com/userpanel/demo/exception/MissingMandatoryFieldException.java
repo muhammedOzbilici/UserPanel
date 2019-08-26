@@ -1,6 +1,6 @@
 package com.userpanel.demo.exception;
 
-public class MissingMandatoryFieldException extends DynamicConfigurationApiException {
+public class MissingMandatoryFieldException extends RuntimeException {
     private static final long serialVersionUID = 4004018412861484948L;
 
     public MissingMandatoryFieldException(String message) {
